@@ -1,0 +1,69 @@
+{{ define "lihattopik" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="col m6">
+                    <a href="/tambahtopik" class="#00bfa5 teal accent-4 z-depth-3 btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+            <div class="row">
+                {{ range . }}
+                <div class="col m12">
+                    <div class="card-panel #ffffff white hoverable z-depth-3">
+                        <div class="row">
+                            <div class="col m1">
+                                <img src="/avatar/{{ .FotoUsers }}" class="responsive-img circle">
+                            </div>
+                            <div class="col m9">
+                                <h6><font style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a href="/lihatuser?IdUser={{ .IdUserTopik }}" style="color:black">{{ .NmDepanUsers }}</a></font></h6>
+                                <em><font style="color:rgb(155, 18, 25)">{{ .TglPostTopik }}</font></em>
+                            </div>
+                            <div class="col m2"><div align="right">
+                                <a href="lihatkomentar?IdTopik={{ .IdTopikTopik }}" class="tooltipped" data-position="bottom" data-tooltip="Lihat komentar"><i class=" material-icons">comment</i></a>
+                                <a href="#modal{{ .IdTopikTopik }}" class="modal-trigger" style="color:black"><i class="material-icons">info</i></a>
+                                </div>
+                                <div id="modal{{ .IdTopikTopik }}" class="modal modal-fixed-footer">
+                                    <form action="/laporkantopik" method="POST">
+                                    <div class="modal-content">
+                                        <h4 align="center">Laporkan topik</h4>
+                                        <input type="hidden" name="IdTopik" value="{{ .IdTopikTopik }}">
+                                        <div class="input-field col m12">
+                                            <label>
+                                                <input name="indikator" type="radio" value="ini bersifat sara" required />
+                                                <span>Ini bersifat sara</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col m12">
+                                            <label>
+                                                <input name="indikator" type="radio" value="ini tidak pantas" required />
+                                                <span>Ini tidak pantas</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col m12">
+                                            <label>
+                                                <input name="indikator" type="radio" value="ini spam" required />
+                                                <span>Ini spam</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Laporkan
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="black-text">{{ .TopikTopik }}</span>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

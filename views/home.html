@@ -1,0 +1,18 @@
+{{ define "home" }}
+<p id="loc"></p>
+<script>
+    var dir;
+    var role = "{{ .role }}"
+    switch(role){
+        case "0":
+            dir = window.location.assign("/lihatkat?idUser=");
+            break;
+        case "1":
+            dir = window.location.assign("/lihatkatAdmin?idUser=");
+            break;
+        case "2":
+            dir = window.location.assign("/index?err=Maaf, Akun Anda Telah Di Non-Aktifkan");
+    }
+    document.getElementById("loc").innerHTML = dir;
+</script>
+{{ end }}

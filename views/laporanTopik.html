@@ -1,0 +1,44 @@
+{{ define "laporanTopik" }}
+    {{ template "header-admin" }}
+            <div class="row">
+                {{ range . }}
+                <div class="col m12">
+                    <div class="card-panel #ffffff white hoverable z-depth-3">
+                        <div class="row">
+                            <div class="col m1">
+                                <img src="/avatar/{{ .Avatar }}" class="responsive-img circle">
+                            </div>
+                            <div class="col m9">
+                                <h6><font style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a href="/lihatuserAdmin?IdUser={{ .IdUser }}" style="color:black">{{ .NmDepanUser }}</a></font></h6>
+                                <em><font style="color:rgb(155, 18, 25)">{{ .TglPost }}</font></em>
+                            </div>
+                            <div class="col m2"><div align="right">
+                                <a href="lihatkomentarAdmin?IdTopik={{ .IdTopik }}" class="tooltipped" data-position="bottom" data-tooltip="Lihat komentar"><i class=" material-icons">comment</i></a>
+                                <a href="#modal{{ .IdTopik }}" class="modal-trigger" style="color:black"><i class="material-icons">delete</i></a>
+                                </div>
+                                <div id="modal{{ .IdTopik }}" class="modal">
+                                    <form action="/hapusreporttopik" method="POST">
+                                    <div class="modal-content">
+                                        <h4 align="center">Hapus Topik ?</h4>
+                                        pelapor : {{ .NmDepanRe }}<br>
+                                        alasan pelaporan : {{ .IndikatorRe }}
+                                        <input type="hidden" name="IdReport" value="{{ .IdReport }}">
+                                        <input type="hidden" name="IdTopik" value="{{ .IdTopik }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Hapus
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="black-text">{{ .Topik }}</span>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+    {{ template "footer-admin" }}
+{{ end }}

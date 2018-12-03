@@ -1,0 +1,53 @@
+{{ define "daftaruser" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                {{ range . }}
+                <div class="col m3" style="height:280px; padding:5px 10px; display:flex; justify-content:center; align-items:center">
+                    <div class="card z-depth-3 hoverable">
+                        <div class="card-image">
+                            <img src="/avatar/{{ .Foto }}" class="responsive-img">
+                            <span class="card-title" style="font-family: 'Denk One', sans-serif; text-shadow: 2px 2px 8px black"><a style="color: white" href="/lihatuser?IdUser={{ .IdUser }}">{{ .NmDepan }}</a> <a href="#modal{{ .IdUser }}" class="modal-trigger btn-floating tooltipped btn-small #bdbdbd grey lighten-1 z-depth-5" data-position="bottom" data-tooltip="Laporkan"><i class=" material-icons"><div style="color:white">info</div></i></a></span>
+                            <div id="modal{{ .IdUser }}" class="modal modal-fixed-footer">
+                                <form action="/laporkanuser" method="POST">
+                                <div class="modal-content">
+                                    <h4 align="center">Laporkan User</h4>
+                                    <input type="hidden" name="IdUser" value="{{ .IdUser }}">
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="akun provokatif" required />
+                                            <span>Akun provokatif</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="ini tidak pantas" required />
+                                            <span>Ini tidak pantas</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="ini spam" required />
+                                            <span>Ini spam</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-small waves-effect" type="submit" name="submit">Laporkan
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

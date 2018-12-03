@@ -1,0 +1,125 @@
+{{ define "telusuribooksort" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="col m4">
+                    <a href="/telusuribook?idUser=" class="waves-effect waves-light btn #00695c teal darken-4"><i class="material-icons left">bookmark</i>Bookmark</a>
+                    <a href="/telusurifile?idUser=" class="waves-effect waves-light btn"><i class="material-icons left">insert_drive_file</i>File</a>
+                </div>
+                <form action="/telusuribooksort" method="POST">
+                    <div class="input-field col m3">
+                        <i class="material-icons prefix">format_list_numbered</i>
+                        <select name="kategori">
+                            {{ range .Kategori }}
+                            <option value="{{ .IdKategori }}">{{ .NmKategori }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                    <div class="col m2">
+                        <button style="margin-top:18%" class="btn-small waves-effect #00bfa5 teal accent-4 col m12" type="submit" name="submit">sort
+                        </button>
+                    </div>
+                    </form>
+                <div class="input-field col m3 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama bookmark..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range .Bookmark }}
+                    <div class="col m4 kotak">
+                        <div class="card hoverable z-depth-2">
+                            <div class="card-content black-text">
+                                <h6 style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a style="color:rgb(42, 126, 98)" href="/lihatuser?IdUser={{ .IdUserUser }}">{{ .NmDepanUser }}</a></h6>
+                                <span class="card-title"><div style="text-transform:lowercase; font-family: 'Denk One', sans-serif;">{{ .NmKategoriKat }}</div></span>
+                                <font face="Rockwell"><div style="text-transform:lowercase"><p class="nama">{{ .JudulBook }}</p></div></font>
+                            </div>
+                            <div class="card-action #00897b teal darken-1">
+                                <div style="color:white"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuatBook }}</font></div>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5" align="center">
+                                <a href="{{ .LinkBook }}" target="_blank" class="btn-floating pulse tooltipped btn-small #00695c teal darken-3 z-depth-5" data-position="bottom" data-tooltip="Kunjungi"><i class=" material-icons"><div style="color:white">link</div></i></a>
+                                <a href="#modal3{{ .IdBookmarkBook }}" class="modal-trigger btn-floating tooltipped btn-small #00695c #d81b60 pink darken-1 z-depth-5" data-position="bottom" data-tooltip="Simpan bookmark"><i class=" material-icons"><div style="color:white">save</div></i></a>
+                                <div id="modal3{{ .IdBookmarkBook }}" class="modal">
+                                <form action="/simpanbook" method="POST">
+                                    <div class="modal-content">
+                                        <h4>Simpan Bookmark ?</h4>
+                                        <input type="hidden" name="IdUP" value="{{ .IdUserUser }}">
+                                        <input type="hidden" name="IdBook" value="{{ .IdBookmarkBook }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Simpan
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <a href="kirimbook?IdBook={{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #1976d2 blue darken-2 z-depth-5" data-position="bottom" data-tooltip="Kirim"><i class=" material-icons"><div style="color:white">send</div></i></a>
+                            <a href="#modal{{ .IdBookmarkBook }}" class="modal-trigger btn-floating tooltipped btn-small #bdbdbd grey lighten-1 z-depth-5" data-position="bottom" data-tooltip="Laporkan"><i class=" material-icons"><div style="color:white">info</div></i></a>
+                            <div id="modal{{ .IdBookmarkBook }}" class="modal modal-fixed-footer">
+                                <form action="/laporkanbook" method="POST">
+                                <div class="modal-content">
+                                    <h4 align="center">Laporkan bookmark</h4>
+                                    <input type="hidden" name="IdBook" value="{{ .IdBookmarkBook }}">
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="ini bersifat sara" required />
+                                            <span>Ini bersifat sara</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="terdapat unsur pornografi" required />
+                                            <span>Terdapat unsur pornografi</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="ini tidak pantas" required />
+                                            <span>Ini tidak pantas</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col m12">
+                                        <label>
+                                            <input name="indikator" type="radio" value="ini spam" required />
+                                            <span>Ini spam</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-small waves-effect" type="submit" name="submit">Laporkan
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

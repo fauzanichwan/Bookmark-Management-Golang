@@ -1,0 +1,53 @@
+{{ define "tambahberkas" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="col m6 offset-m3">
+            <div class="card z-depth-5">
+                <div class="card-content">
+                    <div class="row">
+                        <form action="/addberkas" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">brush</i>
+                                    <input id="icon_prefix" type="text" class="validate" name="namafile" required>
+                                    <label for="icon_prefix">Nama file</label>
+                                </div>
+                                <div class="input-field col m12">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file" name="file" multiple>
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="Upload file anda">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">format_list_numbered</i>
+                                    <select name="tipefile">
+                                        <option value="text_format">teks</option>
+                                        <option value="picture_as_pdf">pdf</option>
+                                        <option value="insert_drive_file">arsip</option>
+                                        <option value="ondemand_video">video</option>
+                                        <option value="image">gambar</option>
+                                        <option value="more_horiz">lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col m12"><br>
+                                    <button class="btn-small waves-effect #00bfa5 teal accent-4 col m12" type="submit" name="submit">Tambahkan
+                                    <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

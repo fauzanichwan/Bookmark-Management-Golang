@@ -1,0 +1,49 @@
+{{ define "footer" }}
+<font face="Courier New">
+<footer class="page-footer #00695c teal darken-1">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text"><font style="font-family: 'Denk One', sans-serif;">Bookmark & Berkas</font></h5>
+                <p class="grey-text text-lighten-4">organize your bookmark and archive !</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text"><font style="font-family: 'Denk One', sans-serif;">More information</font></h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">contact_mail</i> fauzanichwan99@gmail.com</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">http</i> GitHub @fauzanichwan</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">face</i> fauzan ichwan nur pratama</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2018 Copyright
+            <a class="grey-text text-lighten-4 right" href="#!">easy to use</a>
+        </div>
+    </div>
+</footer>
+</font>
+    <script src="assets/jquery-3.3.1.min.js"></script>
+    <script src="assets/materialize.min.js"></script>
+    <script src="data_table/pagenation.js"></script>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $(".dropdown-trigger").dropdown();
+        $('.scrollspy').scrollSpy();
+        $('.collapsible').collapsible();
+        $('select').formSelect();
+        $('.tooltipped').tooltip();
+        $('.slider').slider();
+        $('.modal').modal();
+        $('.tabs').tabs();
+        $('#textarea1');
+        M.textareaAutoResize($('#textarea1'));
+        $(".button-collapse").sideNav();
+    });
+</script>
+{{ end }}

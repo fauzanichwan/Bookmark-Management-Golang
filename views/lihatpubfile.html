@@ -1,0 +1,130 @@
+{{ define "lihatpubfile" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="input-field col m6 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama file..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range . }}
+                <div class="col m4 kotak">
+                    <div class="card horizontal hoverable z-depth-2">
+                        <div class="card-image #00897b teal darken-1 z-depth-4">
+                            <a href="#modal1{{ .IdBerkas }}" class="modal-trigger tooltipped" data-position="left" data-tooltip="Urungkan favorite"><i class="material-icons"><div style="color:white" class="z-depth-2">event_busy</div></i></a><br>
+                            <div id="modal1{{ .IdBerkas }}" class="modal">
+                                <form action="/opublishfile" method="POST">
+                                    <div class="modal-content">
+                                        <h4>Urungkan dari daftar publish ?</h4>
+                                        <input type="hidden" name="selector" value="0">
+                                        <input type="hidden" name="idfile" value="{{ .IdBerkas }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Urungkan publish
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <a href="#modal4{{ .IdBerkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Ubah bookmark"><i class="material-icons"><div style="color:white" class="z-depth-2">edit</div></i></a><br>
+                            <div id="modal4{{ .IdBerkas }}" class="modal modal-fixed-footer">
+                            <form action="/ubahfile" method="POST" enctype="multipart/form-data">
+                                <div class="modal-content">
+                                    <h4 align="center">Ubah File</h4>
+                                    <div class="row">
+                                        <input type="hidden" value="{{ .IdBerkas }}" name="IdBerkas">
+                                        <div class="input-field col m12">
+                                            <i class="material-icons prefix">brush</i>
+                                            <input id="icon_prefix" type="text" class="validate" name="namafile" value="{{ .NamaBerkas }}" required>
+                                            <label for="icon_prefix">Nama file</label>
+                                        </div>
+                                        <div class="input-field col m12">
+                                            <div class="file-field input-field">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" name="file" multiple>
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text" placeholder="Upload file anda">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-field col m12">
+                                            <i class="material-icons prefix">format_list_numbered</i>
+                                            <select name="tipefile">
+                                                <option value="text_format">teks</option>
+                                                <option value="picture_as_pdf">pdf</option>
+                                                <option value="insert_drive_file">arsip</option>
+                                                <option value="ondemand_video">video</option>
+                                                <option value="image">gambar</option>
+                                                <option value="more_horiz">lainnya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-small waves-effect" type="submit" name="submit">simpan perubahan
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                </div>
+                                </form>
+                            </div>
+                            <a href="#modal{{ .IdBerkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Hapus bookmark"><i class=" material-icons"><div style="color:white" class="z-depth-2">delete</div></i></a><br>
+                            <div id="modal{{ .IdBerkas }}" class="modal">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <div class="col m10 offset-m1">
+                                            <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/hapusfile?IdBerkas={{ .IdBerkas }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/upload_file/{{ .Berkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Download file" download><i class=" material-icons"><div style="color:white" class="z-depth-2">file_download</div></i></a><br>
+                            <a href="/kirimfile?IdFile={{ .IdBerkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Kirim file"><i class=" material-icons"><div style="color:white" class="z-depth-2">send</div></i></a>
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <b style="color: black; text-shadow: 2px 2px 8px #238564;"><i class="material-icons">{{ .Tipefile }}</i></b>
+                                <b style="color: white; text-shadow: 2px 2px 4px #4988cf;"><i class="material-icons">public</i></b>
+                                <b style="color: white; text-shadow: 2px 2px 4px #4988cf;"><i class="material-icons">public</i></b>
+                                <b style="color: white; text-shadow: 2px 2px 4px #4988cf;"><i class="material-icons">public</i></b><br>
+                                <h7 style="color: black; font-family: 'Denk One', sans-serif; text-transform:lowercase;" class="nama"><b>{{ .NamaBerkas }}</b></h7>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5">
+                                <div style="color:rgb(61, 131, 96)"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuat }}</font></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

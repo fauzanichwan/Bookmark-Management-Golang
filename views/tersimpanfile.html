@@ -1,0 +1,72 @@
+{{ define "tersimpanfile" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="col m6">
+                    <a href="/tersimpanbook?idUser=" class="waves-effect waves-light btn"><i class="material-icons left">bookmark</i>Bookmark</a>
+                    <a href="/tersimpanfile?idUser=" class="waves-effect waves-light btn #00695c teal darken-4"><i class="material-icons left">insert_drive_file</i>File</a>
+                </div>
+                <div class="input-field col m6 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama file..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range . }}
+                <div class="col m4 kotak">
+                    <div class="card horizontal hoverable z-depth-2">
+                        <div class="card-image #00897b teal darken-1 z-depth-4">
+                            <a href="/upload_file/{{ .BerkasBerkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Download file" download><i class=" material-icons"><div style="color:white" class="z-depth-2">file_download</div></i></a><br>
+                            <a href="#modal3{{ .IdBerkasBerkas }}" class="tooltipped modal-trigger" data-position="left" data-tooltip="Hapus dari daftar simpan" download><i class=" material-icons"><div style="color:white" class="z-depth-2">close</div></i></a>
+                            <div id="modal3{{ .IdBerkasBerkas }}" class="modal">
+                                <form action="/hapussimpanfile" method="POST">
+                                    <div class="modal-content">
+                                        <h4>Hapus dari daftar simpan ?</h4>
+                                        <input type="hidden" name="IdSimpan" value="{{ .IdSimpan }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Hapus
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h6 style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a style="color:rgb(42, 126, 98)" href="/lihatuser?IdUser={{ .IdUserUser }}">{{ .NmDepanUser }}</a></h6>
+                                <b style="color: black; text-shadow: 2px 2px 8px #238564;"><i class="material-icons">{{ .TipefileBerkas }}</i></b><br>
+                                <h7 style="color: black;  font-family: 'Denk One', sans-serif; text-transform:lowercase;" class="nama"><b>{{ .NamaBerkasBerkas }}</b></h7>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5">
+                                <div style="color:rgb(61, 131, 96)"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuatBerkas }}</font></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

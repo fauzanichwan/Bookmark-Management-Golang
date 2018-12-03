@@ -1,0 +1,84 @@
+{{ define "lihatfav" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="input-field col m6 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama bookmark..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range . }}
+                    <div class="col m4 kotak">
+                        <div class="card hoverable z-depth-2">
+                            <div class="card-content black-text">
+                                <b style="color: white; text-shadow: 2px 2px 4px #e94fae;"><i class="material-icons">star</i></b>
+                                <b style="color: white; text-shadow: 2px 2px 4px #e94fae;"><i class="material-icons">star</i></b>
+                                <b style="color: white; text-shadow: 2px 2px 4px #e94fae;"><i class="material-icons">star</i></b>
+                                <span class="card-title"><font face="Bernard MT Condensed"><div style="text-transform:lowercase; font-family: 'Denk One', sans-serif;">{{ .NmKategoriKat }}</div></font></span>
+                                <font face="Rockwell"><div style="text-transform:lowercase"><p class="nama">{{ .JudulBook }}</p></div></font>
+                            </div>
+                            <div class="card-action #00897b teal darken-1">
+                                <div style="color:white"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuatBook }}</font></div>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5" align="center">
+                                <a href="#modal1{{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #4e342e brown darken-3 z-depth-5 modal-trigger" data-position="bottom" data-tooltip="Urungkan favorite"><i class="material-icons"><div style="color:white">event_busy</div></i></a>
+                                <div id="modal1{{ .IdBookmarkBook }}" class="modal">
+                                    <form action="/ofav" method="POST">
+                                        <div class="modal-content">
+                                            <h4>Urungkan favorite ?</h4>
+                                            <input type="hidden" name="selector" value="0">
+                                            <input type="hidden" name="idbook" value="{{ .IdBookmarkBook }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn-small waves-effect" type="submit" name="submit">Urungkan favorite
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <a href="/ubahbook?IdBook={{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #546e7a blue-grey darken-1 z-depth-5" data-position="bottom" data-tooltip="Ubah bookmark"><i class="material-icons"><div style="color:white">edit</div></i></a>
+                                <a href="#modal{{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #e53935 red darken-1 modal-trigger z-depth-5" data-position="bottom" data-tooltip="Hapus bookmark"><i class=" material-icons"><div style="color:white">delete</div></i></a>
+                                    <div id="modal{{ .IdBookmarkBook }}" class="modal">
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <div class="col m10 offset-m1">
+                                                    <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="/hapusbook?IdBook={{ .IdBookmarkBook }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <a href="{{ .LinkBook }}" target="_blank" class="btn-floating pulse tooltipped btn-small #00695c teal darken-3 z-depth-5" data-position="bottom" data-tooltip="Kunjungi"><i class=" material-icons"><div style="color:white">link</div></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

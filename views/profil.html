@@ -1,0 +1,68 @@
+{{ define "profil" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m12" style="background-image:url(img/ava.gif);">
+            <div class="row">
+                <div class="col m5">
+                    <a class="modal-trigger waves-effect hoverable btn-floating tooltipped btn-large #00bfa5 teal accent-4 z-depth-5" data-position="bottom" data-tooltip="Ubah data profil" href="#modal1"><i class="material-icons large"><div style="color:white">settings</div></i></a>
+                </div>
+                <div class="col m2" align="center">
+                    <form action="/ubahfoto" method="POST" enctype="multipart/form-data">
+                        <div class="file-field input-field hoverable circle">
+                            <img src="/avatar/{{ .Foto }}" class="circle responsive-img z-depth-5">
+                            <input type="file" name="avatar" required multiple>
+                        </div>
+                        <button class="btn-small waves-effect" type="submit" name="submit">simpan foto
+                            <i class="material-icons right">check</i>
+                        </button>
+                    </form>
+                    <!-- ubahprofil -->
+                        <div id="modal1" class="modal modal-fixed-footer">
+                            <form action="/doprofil" method="POST">
+                            <div class="modal-content">
+                                <h4>Ubah profil</h4>
+                                <div class="input-field col m6">
+                                    <i class="material-icons prefix">brush</i>
+                                    <input id="icon_prefix" type="text" value="{{ .NmDepan }}" class="validate" name="nmdepan" required>
+                                    <label for="icon_prefix">Nama depan</label>
+                                </div>
+                                <div class="input-field col m6">
+                                    <i class="material-icons prefix">brush</i>
+                                    <input id="icon_prefix" type="text" value="{{ .NmBelakang }}" class="validate" name="nmbelakang" required>
+                                    <label for="icon_prefix">Nama belakang</label>
+                                </div>
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">mail</i>
+                                    <input id="icon_prefix" type="email" value="{{ .Email }}" class="validate" name="email" required>
+                                    <label for="icon_prefix">E-Mail</label>
+                                </div>
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">mood</i>
+                                    <input id="icon_prefix" type="text" value="{{ .Username }}" class="validate" name="username" required>
+                                    <label for="icon_prefix">Username</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn-small waves-effect" type="submit" name="submit">simpan perubahan
+                                    <i class="material-icons right">send</i>
+                                </button>
+                                <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- ubahprofil -->
+                <div class="col m5"></div>
+                <div class="col m6 offset-m3" align="center">
+                    <h5 style="font-family: 'Denk One', sans-serif; text-transform:uppercase; text-shadow: 0 0 3px rgb(52, 133, 99);">{{ .NmDepan }} {{ .NmBelakang }}</h5>
+                    <a class="btn-floating btn-small #ffffff white"><i class="material-icons"><div style="color:rgb(145, 23, 74)">wc</div></i></a> <b style="text-shadow: 0 0 3px rgb(145, 23, 74);">{{ .Jk }}</b>&emsp;
+                    <a class="btn-floating btn-small #ffffff white"><i class="material-icons"><div style="color:rgb(37, 134, 224)">email</div></i></a> <u style="text-shadow: 0 0 3px rgb(37, 134, 224);">{{ .Email }}</u>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {{ template "sidebar-profil" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

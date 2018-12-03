@@ -1,0 +1,49 @@
+{{ define "daftartopik" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="col m6">
+                    <a href="/tambahtopik" class="#00bfa5 teal accent-4 z-depth-3 btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+            <div class="row">
+                {{ range . }}
+                <div class="col m12">
+                    <div class="card-panel #ffffff white hoverable z-depth-3">
+                        <div class="row">
+                            <div class="col m1">
+                                <img src="/avatar/{{ .FotoUsers }}" class="responsive-img circle">
+                            </div>
+                            <div class="col m9">
+                                <h6><font style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a href="" style="color:black">{{ .NmDepanUsers }}</a></font></h6>
+                                <em><font style="color:rgb(155, 18, 25)">{{ .TglPostTopik }}</font></em>
+                            </div>
+                            <div class="col m2" align="right">
+                                <a href="lihatkomentar?IdTopik={{ .IdTopikTopik }}" class="tooltipped" data-position="bottom" data-tooltip="Lihat komentar"><i class=" material-icons">comment</i></a>
+                                <a href="#modal" style="color:rgb(204, 30, 30)" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Hapus topik"><i class="material-icons">delete</i></a>
+                                <div id="modal" class="modal">
+                                    <div class="modal-content">
+                                        <div class="row">
+                                            <div class="col m10 offset-m1">
+                                                <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="/hapustopik?IdTopik={{ .IdTopikTopik }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="black-text">{{ .TopikTopik }}</span>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

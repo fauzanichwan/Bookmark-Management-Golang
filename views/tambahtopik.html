@@ -1,0 +1,33 @@
+{{ define "tambahtopik" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="col m8 offset-m2">
+            <div class="card z-depth-5">
+                <div class="card-content">
+                    <div class="row">
+                        <form action="/addtopik" method="POST">
+                            <div class="row">
+                                <input type="hidden" name="avatar" value="{{ .Foto }}">
+                                <input type="hidden" name="nmDepan" value="{{ .NmDepan }}">
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">edit</i>
+                                    <input id="icon_prefix" type="text" class="validate" name="topik" required>
+                                    <label for="icon_prefix">Topik</label>
+                                </div>
+                                <div class="input-field col m12"><br>
+                                    <button class="btn-small waves-effect #00bfa5 teal accent-4 col m12" type="submit" name="submit">Tambahkan
+                                    <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

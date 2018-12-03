@@ -1,0 +1,114 @@
+{{ define "sortkategori" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="row">
+                <div class="col m2">
+                    <a href="/tambahbook?idUser=" class="#00bfa5 teal accent-4 z-depth-3 btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <form action="/sortkategori" method="POST">
+                <div class="input-field col m4">
+                    <i class="material-icons prefix">format_list_numbered</i>
+                    <select name="kategori">
+                        {{ range .Kategori }}
+                        <option value="{{ .IdKategori }}">{{ .NmKategori }}</option>
+                        {{ end }}
+                    </select>
+                </div>
+                <div class="col m2">
+                    <button style="margin-top:18%" class="btn-small waves-effect #00bfa5 teal accent-4 col m12" type="submit" name="submit">sort
+                    </button>
+                </div>
+                </form>
+                <div class="input-field col m4 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama bookmark..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range .Bookmark }}
+                    <div class="col m4 kotak">
+                        <div class="card hoverable z-depth-2">
+                            <div class="card-content black-text">
+                                <span class="card-title"><font face="Arial"><div style="text-transform:lowercase; font-family: 'Denk One', sans-serif;">{{ .NmKategoriKat }}</div></font></span>
+                                <font face="Rockwell"><div style="text-transform:lowercase"><p class="nama">{{ .JudulBook }}</p></div></font>
+                            </div>
+                            <div class="card-action #00897b teal darken-1">
+                                <div style="color:white"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuatBook }}</font></div>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5" align="center">
+                                <a href="#modal1{{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #f06292 pink lighten-2 modal-trigger z-depth-5" data-position="bottom" data-tooltip="Tambahkan favorite"><i class="material-icons"><div style="color:white">star</div></i></a>
+                                <div id="modal1{{ .IdBookmarkBook }}" class="modal">
+                                    <form action="/afav" method="POST">
+                                        <div class="modal-content">
+                                            <h4>Tambahkan favorite ?</h4>
+                                            <input type="hidden" name="selector" value="1">
+                                            <input type="hidden" name="idbook" value="{{ .IdBookmarkBook }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn-small waves-effect" type="submit" name="submit">Tambahkan
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <a href="#modal2{{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #1e88e5 blue darken-1 modal-trigger z-depth-5" data-position="bottom" data-tooltip="Tambahkan publish"><i class="material-icons"><div style="color:white">publish</div></i></a>
+                                <div id="modal2{{ .IdBookmarkBook }}" class="modal">
+                                    <form action="/addpublish" method="POST">
+                                        <div class="modal-content">
+                                            <h4>Tambahkan daftar publish ?</h4>
+                                            <input type="hidden" name="selector" value="1">
+                                            <input type="hidden" name="idbook" value="{{ .IdBookmarkBook }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn-small waves-effect" type="submit" name="submit">Tambahkan
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <a href="/ubahbook?IdBook={{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #546e7a blue-grey darken-1 z-depth-5" data-position="bottom" data-tooltip="Ubah bookmark"><i class="material-icons"><div style="color:white">edit</div></i></a>
+                                <a href="#modal{{ .IdBookmarkBook }}" class="btn-floating tooltipped btn-small #e53935 red darken-1 modal-trigger z-depth-5" data-position="bottom" data-tooltip="Hapus bookmark"><i class=" material-icons"><div style="color:white">delete</div></i></a>
+                                    <div id="modal{{ .IdBookmarkBook }}" class="modal">
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <div class="col m10 offset-m1">
+                                                    <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="/hapusbook?IdBook={{ .IdBookmarkBook }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <a href="{{ .LinkBook }}" target="_blank" class="btn-floating pulse tooltipped btn-small #00695c teal darken-3 z-depth-5" data-position="bottom" data-tooltip="Kunjungi"><i class=" material-icons"><div style="color:white">link</div></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

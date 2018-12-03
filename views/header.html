@@ -1,0 +1,65 @@
+{{ define "header" }}
+    <html>
+        <head>
+            <title>Bookmark & berkas</title>
+            <link href="assets/style.css" rel="stylesheet">
+            <link rel="stylesheet" href="assets/materialize.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
+        </head>
+        <body style="background-image:url(img/bg2.png)"> 
+        <div class="navbar-fixed">    
+            <nav class="#00695c teal darken-1">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo"><font style="font-family: 'Denk One', sans-serif;"><i class="large material-icons">bubble_chart</i>beranda</font></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <font face="Rockwell">
+                        <li><a href="/lihatkat?idUser=">Kategori</a></li>
+                        <li><a href="/lihatbook?idUser=">Bookmark</a></li>
+                        <li><a href="/lihatberkas?idUser=">File</a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Favorite<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Publish<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="/profil?idUser=">Profil</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        </font>
+                    </ul>
+                </div>
+            </nav>
+            </div>
+            <ul id="dropdown1" class="dropdown-content">
+                <font face="Rockwell">
+                <li><a href="/lihatfav?idUser=">Bookmark</a></li>
+                <li><a href="/lihatfavfile?idUser=">File</a></li>
+                </font>
+            </ul>
+            <ul id="dropdown2" class="dropdown-content">
+                <font face="Rockwell">
+                <li><a href="/lihatpub?idUser=">Bookmark</a></li>
+                <li><a href="/lihatpubfile?idUser=">File</a></li>
+                </font>
+            </ul>
+            <ul class="sidenav" id="mobile-demo">
+                <font face="Rockwell">
+                <li><a href="/lihatkat?idUser=">Kategori</a></li>
+                <li><a href="/lihatbook?idUser=">Bookmark</a></li>
+                <li><a href="/lihatberkas?idUser=">File</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Favorite<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown4">Publish<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="/profil?idUser=">Profil</a></li>
+                <li><a href="/logout">Logout</a></li>
+                </font>
+            </ul>
+            <ul id="dropdown3" class="dropdown-content">
+                <font face="Rockwell">
+                <li><a href="/lihatfav?idUser=">Bookmark</a></li>
+                <li><a href="/lihatfavfile?idUser=">File</a></li>
+                </font>
+            </ul>
+            <ul id="dropdown4" class="dropdown-content">
+                <font face="Rockwell">
+                <li><a href="/lihatpub?idUser=">Bookmark</a></li>
+                <li><a href="/lihatpubfile?idUser=">File</a></li>
+                </font>
+            </ul>
+            <br>
+{{ end }}

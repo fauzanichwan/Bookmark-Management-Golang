@@ -1,0 +1,204 @@
+{{ define "index" }}
+<html>
+    <head>
+        <title>Halaman awal</title>
+        <link href="assets/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/materialize.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row" style="background-image:url(img/bg.png)">
+        <div class="col m10 offset-m1">
+            <div class="col m6" style="margin-top:10%;">
+            <script>
+                var a = "{{ .err }}"
+                if (a != ""){
+                    alert(a);
+                }
+            </script>
+                <h1 style="font-family: 'Denk One', sans-serif;">
+                   Simpan dan Bagikan !
+                </h1>
+                <h5 style="font-family: 'Denk One', sans-serif; color:white">
+                    sebuah website untuk mengorganisasikan sebuah bookmark dan file secara terstruktur serta dapat berbagi dengan pengguna lain.
+                </h5>
+            </div>
+            <div class="col m6">
+                <div class="card #ffffff white z-depth-5">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="font-family: 'Denk One', sans-serif; color: black; text-shadow: 2px 2px 8px #238564;">Registrasi</span>
+                        <form action="/proccessreg" method="POST">
+                        <div class="row">
+                            <div class="input-field col m6">
+                                <i class="material-icons prefix">looks_one</i>
+                                <input id="icon_prefix" type="text" class="validate" name="nmDepan" required>
+                                <label for="icon_prefix">Nama Depan</label>
+                            </div>
+                            <div class="input-field col m6">
+                                <i class="material-icons prefix">looks_two</i>
+                                <input id="icon_telephone" type="text" name="nmBelakang" class="validate" required>
+                                <label for="icon_telephone">Nama belakang</label>
+                            </div>
+                            <div class="input-field col m12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="icon_prefix" type="email" class="validate" name="email" required>
+                                <label for="icon_prefix">E-Mail</label>
+                            </div>
+                            <div class="col m12">
+                                <label>
+                                    <input name="jk" type="radio" value="pria"  required/>
+                                    <span>Pria</span>
+                                </label>
+                                <label>
+                                    <input name="jk" type="radio" value="wanita"  required/>
+                                    <span>Wanita</span>
+                                </label>
+                            </div>
+                            <div class="input-field col m12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_prefix" type="text" class="validate" name="username" required>
+                                <label for="icon_prefix">Username</label>
+                            </div>
+                            <div class="input-field col m12">
+                                <i class="material-icons prefix">lock</i>
+                                <input id="icon_prefix" type="password" class="validate" name="password" required>
+                                <label for="icon_prefix">Password</label>
+                            </div>
+                            <div class="col m12">
+                                <button class="btn waves-effect waves-light col m12" type="submit" name="submit">Mendaftar
+                                </button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4" style="font-size:medium; font-family:Rockwell"><b>Sudah memiliki akun ?, sliahkan login !</b><i class="material-icons right medium" style="color: black; text-shadow: 2px 2px 8px #238564;">exit_to_app</i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4" style="font-family: 'Denk One', sans-serif; color: black; text-shadow: 2px 2px 8px #238564;">Login<i class="material-icons right">close</i></span>
+                        <form action="authlogin" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" type="text" class="validate" name="username" required>
+                                    <label for="icon_prefix">Username</label>
+                                </div>
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="icon_telephone" type="password" name="password" class="validate" required>
+                                    <label for="icon_telephone">Password</label>
+                                </div>
+                            </div>
+                        <div class="col m12">
+                            <button class="btn waves-effect waves-light col m12" type="submit" name="submit">Login
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row" style="background-image:url(img/bg2.png)">
+            <div class="row">
+                <div class="col m6 offset-m3">
+                    <h1 align="center" style="font-family: 'Denk One', sans-serif; color: white; text-shadow: 2px 2px 8px black;">JOIN NOW!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <!-- fitur -->
+                <div class="col m6">
+                    <div class="col m2 z-depth-2" style="border-radius:20px;">
+                        <i class="material-icons large"><b style="color: black; text-shadow: 2px 2px 8px #238564;">bookmark</b></i>   
+                    </div>  
+                    <div class="col m10">
+                        <p style="margin-top:2%; font-family: 'Denk One', sans-serif; color: black; text-shadow: 2px 2px 8px #238564;">
+                            Fitur untuk menyimpan bookmark, buat berdasarkan kategori serta organisasikan dalam bentuk private atau publik
+                        </p>
+                    </div>
+                </div>
+                <div class="col m6">
+                    
+                </div>
+                <!-- fitur -->
+            </div>
+            <div class="row">
+                <!-- fitur -->
+                <div class="col m6">
+                    
+                </div>
+                <div class="col m6">
+                    <div class="col m2 z-depth-2" style="border-radius:20px;">
+                        <i class="material-icons large"><b style="color: black; text-shadow: 2px 2px 8px #238564;">insert_drive_file</b></i>   
+                    </div>  
+                    <div class="col m10">
+                        <p style="margin-top:2%; font-family: 'Denk One', sans-serif; color: black; text-shadow: 2px 2px 8px #238564;">
+                            Fitur menyimpan file dalam berbagai tipe. di sediakan form untuk mengupload file demikian dengan tipe file yang anda hendak upload, organisasikan sesuai keinginan anda.
+                        </p>
+                    </div>
+                </div>
+                <!-- fitur -->
+            </div>
+            <div class="row">
+                <!-- fitur -->
+                <div class="col m6">
+                    <div class="col m2 z-depth-2" style="border-radius:20px;">
+                        <i class="material-icons large"><b style="color: black; text-shadow: 2px 2px 8px #238564;">public</b></i>   
+                    </div>  
+                    <div class="col m10">
+                        <p style="margin-top:2%; font-family: 'Denk One', sans-serif; color: black; text-shadow: 2px 2px 8px #238564;">
+                            Dapat saling berbagi bookmark maupun file untuk sesama pengguna, pengguna dapat mencari bookmark maupun file yang tengah di butuhkan dari hasil publish.
+                        </p>
+                    </div>
+                </div>
+                <div class="col m6">
+                    
+                </div>
+                <!-- fitur -->
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    <h4 align="center" style="font-family: 'Denk One', sans-serif;">
+                        Dan masih banyak lagi.
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <font face="Courier New">
+            <footer class="page-footer #00695c teal darken-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text"><font style="font-family: 'Denk One', sans-serif;">Bookmark & Berkas</font></h5>
+                            <p class="grey-text text-lighten-4">organize your bookmark and archive !</p>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h5 class="white-text"><font style="font-family: 'Denk One', sans-serif;">More information</font></h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">contact_mail</i> fauzanichwan99@gmail.com</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">http</i> GitHub @fauzanichwan</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">face</i> fauzan ichwan nur pratama</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        © 2018 Copyright
+                        <a class="grey-text text-lighten-4 right" href="#!">easy to use</a>
+                    </div>
+                </div>
+            </footer>
+        </font>
+    <script src="assets/jquery-3.3.1.min.js"></script>
+    <script src="assets/materialize.min.js"></script>
+    </body>
+    <script>
+        $(document).ready(function(){
+          $('.sidenav').sidenav();
+          $('.carousel').carousel();
+          $('.modal').modal();
+        });
+    </script>
+</html>
+{{ end }}

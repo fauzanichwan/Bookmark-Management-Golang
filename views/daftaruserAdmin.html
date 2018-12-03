@@ -1,0 +1,46 @@
+{{ define "daftaruserAdmin" }}
+    {{ template "header-admin" }}
+            <div class="row">
+                {{ range . }}
+                <div class="col m2" style="height:280px; padding:5px 10px; display:flex; justify-content:center; align-items:center">
+                    <div class="card z-depth-3 hoverable">
+                        <div class="card-image">
+                            <img src="/avatar/{{ .Foto }}" class="responsive-img">
+                            <span class="card-title" style="font-family: 'Denk One', sans-serif; text-shadow: 2px 2px 8px black"><a style="color: white" href="/lihatuserAdmin?IdUser={{ .IdUser }}">{{ .NmDepan }}</a><br>
+                            <a href="#modal{{ .IdUser }}" class="modal-trigger btn-floating tooltipped btn-small #5e35b1 deep-purple darken-1 z-depth-5" data-position="bottom" data-tooltip="Non-aktifkan"><i class=" material-icons"><div style="color:white">report</div></i></a>
+                            <a href="#modal2{{ .IdUser }}" class="modal-trigger btn-floating tooltipped btn-small #e53935 red darken-1 z-depth-5" data-position="bottom" data-tooltip="Hapus"><i class=" material-icons"><div style="color:white">delete</div></i></a></span>
+                            <div id="modal2{{ .IdUser }}" class="modal">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <div class="col m10 offset-m1">
+                                            <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/hapususerAdmin?IdUser={{ .IdUser }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="modal{{ .IdUser }}" class="modal modal-fixed-footer">
+                                <form action="/reportuserAdmin" method="POST">
+                                <div class="modal-content">
+                                    <h4 align="center">Non-Aktifkan Akun</h4>
+                                    <input type="hidden" name="IdUser" value="{{ .IdUser }}">
+                                    <input type="hidden" name="sel" value="2">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-small waves-effect" type="submit" name="submit">Non-aktifkan
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+    {{ template "footer-admin" }}
+{{ end }}

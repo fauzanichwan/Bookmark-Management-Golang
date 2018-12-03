@@ -1,0 +1,23 @@
+{{ define "footer-admin" }}
+    <script src="assets/jquery-3.3.1.min.js"></script>
+    <script src="assets/materialize.min.js"></script>
+    <script src="data_table/pagenation.js"></script>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $(".dropdown-trigger").dropdown();
+        $('.scrollspy').scrollSpy();
+        $('.collapsible').collapsible();
+        $('select').formSelect();
+        $('.tooltipped').tooltip();
+        $('.slider').slider();
+        $('.modal').modal();
+        $('.tabs').tabs();
+        $('#textarea1');
+        M.textareaAutoResize($('#textarea1'));
+        $(".button-collapse").sideNav();
+    });
+</script>
+{{ end }}

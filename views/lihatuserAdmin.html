@@ -1,0 +1,22 @@
+{{ define "lihatuserAdmin" }}
+    {{ template "header-admin" }}
+    <div class="row">
+        <div class="col m12" style="background-image:url(img/ava.gif);">
+            <div class="row">
+                <div class="col m5"></div>
+                <div class="col m2" align="center">
+                    <div class="file-field input-field hoverable circle">
+                        <img src="/avatar/{{ .Foto }}" class="circle responsive-img z-depth-5">
+                    </div>
+                <div class="col m5"></div>
+            </div>
+                <div class="col m6 offset-m3" align="center">
+                    <h5 style="font-family: 'Denk One', sans-serif; text-transform:uppercase; text-shadow: 0 0 3px rgb(52, 133, 99);">{{ .NmDepan }} {{ .NmBelakang }}</h5>
+                    <a class="btn-floating btn-small #ffffff white"><i class="material-icons"><div style="color:rgb(145, 23, 74)">wc</div></i></a> <b style="text-shadow: 0 0 3px rgb(145, 23, 74);">{{ .Jk }}</b>&emsp;
+                    <a class="btn-floating btn-small #ffffff white"><i class="material-icons"><div style="color:rgb(37, 134, 224)">email</div></i></a> <u style="text-shadow: 0 0 3px rgb(37, 134, 224);">{{ .Email }}</u>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ template "footer-admin" }}
+{{ end }}

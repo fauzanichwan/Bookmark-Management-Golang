@@ -1,0 +1,72 @@
+{{ define "header-admin" }}
+    <html>
+        <head>
+            <title>Bookmark & berkas</title>
+            <link href="assets/style.css" rel="stylesheet">
+            <link rel="stylesheet" href="assets/materialize.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+        </head>
+        <body style="background-image:url(img/bg2.png)"> 
+            <div class="navbar-fixed">
+            <nav class="#00695c teal darken-1">
+                    <div class="nav-wrapper">
+                        <a href="#!" class="brand-logo right"><font style="font-family: 'Denk One', sans-serif;"><i class="large material-icons">bubble_chart</i>beranda</font></a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <ul class="left hide-on-med-and-down">
+                            <font face="Rockwell">
+                            <li><a href="/lihatkatAdmin?idUser=">Kategori</a></li>
+                            <li><a href="/lihatbookAdmin?idUser=">Bookmark</a></li>
+                            <li><a href="/lihatfileAdmin?idUser=">File</a></li>
+                            <li><a href="/lihattopikAdmin?idUser=">Forum</a></li>
+                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Users<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Laporan<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a href="/logout">Logout</a></li>
+                            </font>
+                        </ul>
+                    </div>
+                </nav>
+                </div>
+                <ul id="dropdown1" class="dropdown-content">
+                    <font face="Rockwell">
+                    <li><a href="/laporanBookmark?idUser=">bookmark</a></li>
+                    <li><a href="/laporanFile?idUser=">File</a></li>
+                    <li><a href="/laporanAkun?idUser=">Akun</a></li>
+                    <li><a href="/laporanTopik?idUser=">Topik</a></li>
+                    <li><a href="/laporanKomentar?idUser=">Komentar</a></li>
+                    </font>
+                </ul>
+                <ul id="dropdown3" class="dropdown-content">
+                    <font face="Rockwell">
+                    <li><a href="/daftaruserNonAktif?idUser=">Non-aktif</a></li>
+                    <li><a href="/daftaruserAdmin?idUser=">Aktif</a></li>
+                    </font>
+                </ul>
+                <ul class="sidenav" id="mobile-demo">
+                    <font face="Rockwell">
+                        <li><a href="/lihatkatAdmin?idUser=">Kategori</a></li>
+                        <li><a href="/lihatbookAdmin?idUser=">Bookmark</a></li>
+                        <li><a href="/lihatfileAdmin?idUser=">File</a></li>
+                        <li><a href="/lihattopikAdmin?idUser=">Forum</a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown4">Users<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Laporan<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </font>
+                </ul>
+                <ul id="dropdown2" class="dropdown-content">
+                    <font face="Rockwell">
+                        <li><a href="/laporanBookmark?idUser=">bookmark</a></li>
+                        <li><a href="/laporanFile?idUser=">File</a></li>
+                        <li><a href="/laporanAkun?idUser=">Akun</a></li>
+                        <li><a href="/laporanTopik?idUser=">Topik</a></li>
+                        <li><a href="/laporanKomentar?idUser=">Komentar</a></li>
+                    </font>
+                </ul>
+                <ul id="dropdown4" class="dropdown-content">
+                    <font face="Rockwell">
+                    <li><a href="/daftaruserNonAktif?idUser=">Non-aktif</a></li>
+                    <li><a href="/daftaruserAdmin?idUser=">Aktif</a></li>
+                    </font>
+                </ul>
+                <br>
+            {{ end }}

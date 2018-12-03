@@ -1,0 +1,73 @@
+{{ define "laporanBookmark" }}
+    {{ template "header-admin" }}
+            <div class="row">
+                <div class="input-field col m6 hoverable">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama bookmark..">
+                </div>
+            </div>
+            <div class="row" id="myUL">
+                {{ range . }}
+                    <div class="col m3 kotak">
+                        <div class="card hoverable z-depth-2">
+                            <div class="card-content black-text">
+                                <h6 style="text-transform:lowercase; font-family: 'Denk One', sans-serif;">Pelapor : {{ .NmDepanRe }}</h6>
+                                <h6 style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a style="color:rgb(42, 126, 98)" href="/lihatuserAdmin?IdUser={{ .IdUserUser }}">{{ .NmDepanUser }}</a></h6>
+                                <span class="card-title"><div style="text-transform:lowercase; font-family: 'Denk One', sans-serif;">{{ .NmKategoriKat }}</div></span>
+                                <font face="Rockwell"><div style="text-transform:lowercase"><p class="nama">{{ .JudulBook }}</p></div></font>
+                            </div>
+                            <div class="card-action #00897b teal darken-1">
+                                <div style="color:white"><font face="Rockwell"><i class="material-icons">date_range</i> {{ .TglBuatBook }}</font></div>
+                            </div>
+                            <div class="card-action #e0f2f1 teal lighten-5" align="center">
+                                <a href="{{ .LinkBook }}" target="_blank" class="btn-floating pulse tooltipped btn-small #00695c teal darken-3 z-depth-5" data-position="bottom" data-tooltip="Kunjungi"><i class=" material-icons"><div style="color:white">link</div></i></a>
+                                <a href="#modal5{{ .IdBookRe }}" class="modal-trigger btn-floating tooltipped btn-small #bdbdbd grey lighten-1 z-depth-5" data-position="bottom" data-tooltip="Alasan pelaporan"><i class=" material-icons"><div style="color:white">info</div></i></a>
+                                <a href="#modal3{{ .IdBookRe }}" class="modal-trigger btn-floating tooltipped btn-small #00695c #d81b60 pink darken-1 z-depth-5" data-position="bottom" data-tooltip="Hapus dari daftar simpan"><i class=" material-icons"><div style="color:white">close</div></i></a>
+                                <div id="modal3{{ .IdBookRe }}" class="modal">
+                                <form action="/hapusreportbook" method="POST">
+                                    <div class="modal-content">
+                                        <h4>Hapus Bookmark ?</h4>
+                                        <input type="hidden" name="IdReport" value="{{ .IdReport }}">
+                                        <input type="hidden" name="IdBook" value="{{ .IdBookmarkBook }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn-small waves-effect" type="submit" name="submit">Hapus
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                    </div>
+                                </form>
+                            </div>
+                                <div id="modal5{{ .IdBookRe }}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Alasan Pelaporan</h4>
+                                        {{ .IndikatorRe }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-small">Tutup</a>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+            <script>
+                    function myFunction() {
+                        var input, filter, ul, li, p, i;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("myUL");
+                        li = ul.getElementsByClassName("kotak");
+                        for (i = 0; i < li.length; i++) {
+                            p = li[i].getElementsByClassName("nama")[0];
+                            if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
+                    </script>
+    {{ template "footer-admin" }}
+{{ end }}

@@ -1,0 +1,35 @@
+{{ define "kirimfile" }}
+    {{ template "header" }}
+    <div class="row">
+        <div class="col m8">
+            <div class="col m6 offset-m3">
+            <div class="card z-depth-5">
+                <div class="card-content">
+                    <div class="row">
+                        <form action="/proseskirimfile" method="POST">
+                            <div class="row">
+                                <input type="hidden" value="{{ .IdFileFile }}" name="IdFile">
+                                <div class="input-field col m12">
+                                    <i class="material-icons prefix">format_list_numbered</i>
+                                    <select class="icons" name="IdPenerima">
+                                        {{ range .Users }}
+                                        <option value="{{ .IdUser }}" data-icon="/avatar/{{ .Foto }}" class="left">{{ .NmDepan }}</option>
+                                        {{ end }}
+                                    </select>
+                                </div>
+                                <div class="input-field col m12"><br>
+                                    <button class="btn-small waves-effect #00bfa5 teal accent-4 col m12" type="submit" name="submit">Kirim Bookmark
+                                    <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {{ template "sidebar" }}
+    </div>
+    {{ template "footer" }}
+{{ end }}

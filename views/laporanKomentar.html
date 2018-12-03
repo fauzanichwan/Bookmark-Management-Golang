@@ -1,0 +1,40 @@
+{{ define "laporanKomentar" }}
+    {{ template "header-admin" }}
+            <div class="row">
+                <div class="col m12">
+                    <ul class="collection">
+                        {{ range . }}
+                        <li class="collection-item avatar">
+                            <img src="/avatar/{{ .FotoUsers }}" alt="" class="circle">
+                            <span class="title" style="text-transform:lowercase; font-family: 'Denk One', sans-serif;"><a href="/lihatuserAdmin?IdUser={{ .IdUserKomen }}" style="color:black">{{ .NmDepanUsers }}</a></span>
+                            <p>{{ .KomentarKomen }}<br>
+                                <em><font style="color:rgb(155, 18, 25)">{{ .TglPostKomen }}</font></em></p>
+                                <a href="#modal{{ .IdKomentarKomen }}" class="modal-trigger secondary-content" style="color:black"><i class="material-icons">delete</i></a>
+                                <div id="modal{{ .IdKomentarKomen }}" class="modal">
+                                    <div class="modal-content">
+                                        <form action="/hapusreportkomentar" method="POST">
+                                        <div class="row">
+                                            <div class="col m10 offset-m1">
+                                                <h4 align="center">Yakin ingin menghapus ?</h4>
+                                                pelapor : {{ .NmDepanRe }}<br>
+                                                alasan pelaporan : {{ .IndikatorRe }}
+                                                <input type="hidden" name="IdReport" value="{{ .IdReport }}">
+                                                <input type="hidden" name="IdKomen" value="{{ .IdKomentarKomen }}">  
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn-small waves-effect" type="submit" name="submit">hapus
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-small">batal</a>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+    {{ template "footer-admin" }}
+{{ end }}

@@ -1,0 +1,35 @@
+{{ define "register" }}
+<html>
+    <head>
+        <title>Halaman daftar</title>
+        <style>
+                body{
+                    margin: auto;
+                    width: 200px;
+                    height: auto;
+                    margin-top: 100px;
+                }
+                h1{
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+        </style>
+    </head>
+    <body>
+    <h1>Form Registrasi</h1>
+    <hr>
+    <form action="/proccessreg" method="POST">
+        <input type="text" name="nmDepan" placeholder="Nama depan"><br>
+        <input type="text" name="nmBelakang" placeholder="Nama belakang"><br>
+        <input type="email" name="email" placeholder="E-Mail"><br>
+        <input type="radio" name="jk" value="pria">Pria <input type="radio" name="jk" value="wanita">Wanita<br>
+        <input type="text" name="username" placeholder="Username" ><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" value="mendaftar" name="submit"><br>
+        <a href="/">Kembali</a>
+    </form>
+    <hr>
+    <p align="center">copyright &copy; 2018 (beta version)</p>
+    </body>
+</html>
+{{ end }}

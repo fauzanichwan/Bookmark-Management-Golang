@@ -1,0 +1,72 @@
+{{ define "lihatkatAdmin" }}
+    {{ template "header-admin" }}
+    <div class="row">
+        <div class="input-field col m6 hoverable">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="myInput" onkeyup="myFunction()" class="validate" placeholder="Cari nama kategori..">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m12">
+            <table id="myTable" class="responsive-table striped">
+                <thead style=" font-family: 'Denk One', sans-serif;">
+                    <tr>
+                        <th><i class="material-icons">brush</i> NAMA KATEGORI</th>
+                        <th><i class="material-icons">mood</i> PEMBUAT</th>
+                        <th><i class="material-icons">date_range</i> TANGGAL BUAT</th>
+                        <th><i class="material-icons">label_outline</i> OPSI</th>
+                    </tr>
+                </thead>
+                <tbody style="font-family:Rockwell">
+                    {{ range . }}
+                    <tr>
+                        <td><font style="font-family: 'Fjalla One', sans-serif;">{{ .NmKategoriKat }}</font></td>
+                        <td><font style="font-family: 'Fjalla One', sans-serif;"><a style="color:black; text-shadow: 2px 2px 8px #238564;" href="/lihatuserAdmin?IdUser={{ .IdUserKat }}">{{ .NmDepanUsers }}</a></font></td>
+                        <td><font style="font-family: 'Fjalla One', sans-serif;"><u>{{ .TglBuatKat }}</u></font></td>
+                        <td>
+                            <a href="/listbookAdmin?NmKat={{ .IdKategoriKat }}" class="btn-floating tooltipped btn-small #546e7a blue-grey darken-1 z-depth-5" data-position="bottom" data-tooltip="List bookmark"><i class="material-icons"><div style="color:white">remove_red_eye</div></i></a>
+                            <a href="#modal{{ .IdKategoriKat }}" class="btn-floating tooltipped btn-small #e53935 red darken-1 modal-trigger z-depth-5" data-position="bottom" data-tooltip="Hapus kategori"><i class=" material-icons"><div style="color:white">delete</div></i></a>
+                            <div id="modal{{ .IdKategoriKat }}" class="modal" style="background-image:url(img/bg.jpg)">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <div class="col m10 offset-m1">
+                                            <h4 align="center">Yakin ingin menghapus ?</h4>  
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/hapuskatAdmin?IdKat={{ .IdKategoriKat }}" class="modal-close waves-effect waves-green btn-flat">Ya</a>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Tidak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+            <script>
+                function myFunction() {
+                  // Declare variables 
+                  var input, filter, table, tr, td, i;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                
+                  // Loop through all table rows, and hide those who don't match the search query
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    } 
+                  }
+                }
+        </script>
+        </div>
+    </div>
+    {{ template "footer-admin" }}
+{{ end }}
